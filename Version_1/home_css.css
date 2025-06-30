@@ -1,0 +1,366 @@
+ html, body{
+                margin: 0px;
+                padding: 0px;
+                overflow-x: hidden;
+                
+            }
+             .language-container{  
+                height: auto;  
+                width: 100%;        
+                display: flex;
+                align-items: center;
+                background-color: #000000; /* Dark background */          
+                position: fixed;
+                top: 0;
+                overflow: hidden;
+               
+                
+            }
+            .language{
+                padding: 10px;
+                display: flex;
+                overflow-x: auto;
+                white-space: nowrap;
+                scroll-behavior: smooth;
+                width: calc(100% - 50px); /* Adjust for arrow buttons */
+                scrollbar-width: none; 
+            }
+            .language a{
+               
+                padding: 14px 16px;
+                color: #FFF;
+                text-decoration: none;
+                font-weight: bold;
+                text-transform: uppercase;
+                margin: 0 5px;
+                font-size: clamp(12px, 2vw, 14px);
+
+            }
+            .language a:hover, .scroll-btn:hover{
+                background-color: #ff5900;
+                
+            }
+            .scroll-btn{
+                background-color: #000000;
+                color: white;
+                border: none;
+                cursor: pointer;
+                padding: 1px;
+                font-size: 20px;
+                font-weight: bold;
+                height: 60px;
+                width: 40px; 
+            }
+            .left-btn {
+                left: 0;
+             }
+
+            .right-btn {
+                right: 0;
+            }
+            .scrollmenu{
+                width: 100%;
+                min-height: 40px;
+                height: auto;          
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                background-color: #565151; /* Dark background */          
+                position: fixed;
+                          
+                overflow: hidden;
+            }
+            .scrollmenu a{
+                color: rgb(255, 255, 255);
+                text-decoration: none;
+                font-weight: bold;
+                margin: 10px;
+                font-size: clamp(14px, 2vw, 28px);/*font-size: 28px;*/
+                text-align: center;
+                transform: scale(1);
+                transition: transform 0.3s ease-in-out;
+                padding:  clamp(2px, 1vw, 10px);
+            }
+
+            .scrollmenu a:hover{
+                background-color: #ff5900;
+                border-radius: 5px;
+                transform: scale(1.05);
+                
+            }
+            
+            
+            .background_image{
+                margin-top: var(--bg-top, 100px); 
+                width: 100%;
+                aspect-ratio: 16 / 9;
+                object-fit: cover; 
+                background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), 
+                url('https://pngmagic.com/product_images/nature-background-for-desktop_93b.jpeg');
+                
+                background-repeat: no-repeat;
+                background-size: cover;
+                background-size: 100% 100%;
+                text-align: center;
+                align-items: center;
+                justify-content: center;
+                background-position: center; 
+                display: flex;
+              
+            }
+
+            .background_image p{
+                margin: 0;
+                padding: 0;
+                color: #D0F0C0;
+                font-size: clamp(18px, 4vw, 36px);
+                font-weight: bold;
+                animation: fadeIn 1.5s ease-in-out;
+            }
+            .aboutus_container{
+                margin: 10px;
+                text-align: center;
+            }
+            .aboutus_container h2{
+                font-size: clamp(14px, 2vw, 28px);
+            }
+            .aboutus{
+                background-color: #D0F0C0;
+                margin: 10px;
+                padding: 10px;
+                border-radius: 5px;
+            }
+            .aboutus p{
+                font-size: clamp(12px, 2vw, 18px);
+                margin-right: 10px;
+            }
+
+            .aboutus img{
+                height: 20%;
+                width: 20%;
+                box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+                border-radius: 5px;
+            }
+           .footer{
+                width: 100%;
+                background-color:#2e2e2e;;
+                height: auto;
+                margin-bottom: 0px;
+                padding: 10px;
+                display: flex;
+                flex-direction: column; /* or row if you want side-by-side */
+                align-items: center;
+                justify-content: center;
+                color: #f0f0f0;
+                font-family: 'Segoe UI', sans-serif;
+           }
+
+
+           .feedback form {
+                display: flex;
+                flex-direction: column; /* Stack vertically */
+                align-items: center;
+                justify-content: center;
+                gap: 10px; /* Adds space between textarea and button */
+            }
+
+            .feedback textarea{
+                width: clamp(200px, 50vw, 350px);
+                min-height: 100px;
+                padding: 10px;
+                border-radius: 8px;
+                border: none;
+                resize: vertical;
+                font-size: 14px;
+                box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+            }
+
+            .feedback h2{
+                font-size: clamp(14px, 2vw, 28px);
+            }
+
+            .feedback button{
+                background-color: #ff5900;
+                padding: 10px 30px;
+                border-radius: 8px;
+                cursor: pointer;
+                color: white;
+                border: none;
+                font-size: clamp(12px, 2vw, 16px);
+                font-weight: bold;
+                box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+                transition: background-color 0.3s, transform 0.2s;
+            }
+            .feedback button:hover{
+                background-color: #d6b709;
+                transform: translateY(-3px);
+            }
+
+            .form_data {
+                 width: clamp(300px, 30%, 600px);
+                margin: 20px auto;
+                background-image: 
+                    linear-gradient(rgba(15, 15, 15, 0.5), rgba(49, 45, 45, 0.5)), 
+                    url('https://thumbs.dreamstime.com/b/white-jasmine-rice-paddy-field-background-wooden-bowl-199269373.jpg'); 
+                background-repeat: no-repeat;
+                background-size: cover; 
+                padding: 20px;
+                border-radius: 8px;
+                box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+                font-family: 'Segoe UI', sans-serif;
+                color: #fff;
+            }
+        
+            .form-group {
+                margin-bottom: 15px;
+                font-size: larger;
+                text-align: left;
+            }
+            .form_data h2{
+                text-align: center;
+                font-size: clamp(12px, 2vw, 18px);
+            }
+            .form_data label{  
+                font-size: clamp(12px, 2vw, 18px);
+                margin-bottom: 5px;
+                display: block;
+                font-weight: bolder;
+            }
+            .form_data input[type="text"],
+            .form_data textarea{
+                width: 50%;
+                border-radius: 10px;
+                border-style: none;
+                padding: 10px;
+            }
+            .form_data input[type="text"]:focus, 
+            .form_data textarea:focus{
+                outline: none;
+                border: 2px solid #3498db;
+            }
+
+            .form_data textarea {
+                resize: vertical;
+                min-height: 40px;
+                height: 80px;
+            }
+
+            .form_data button{
+                font-size: clamp(12px, 2vw, 18px);
+                padding: 10px;
+                min-width: 30px;
+                width: auto;
+                border-radius: 5px;
+                border: none;
+                background-color: #3cbe0c;
+                transition: background-color 0.3s, transform 0.2s;
+            }
+            .form_data button:hover{
+                background-color: #14d527;
+                transform: translateY(-3px);
+            }
+            .organic_farming{
+                display: none;
+            }
+.tutorial {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    padding: 20px;
+}
+
+.tutorial input[type="text"] {
+    width: clamp(200px, 30%, 400px);
+    padding: 10px;
+    border-radius: 20px;
+    font-size: clamp(12px, 2vw, 16px);
+    border: 2px solid #000000;
+}
+
+.tutorial input[type="text"]:focus {
+    
+    outline: none;
+    border: 2px solid #3498db;
+    box-shadow: 3px 3px 10px rgba(33, 166, 214, 0.574);
+}
+
+/* Crop container with responsive grid layout */
+.crop-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); /* Adjust columns based on screen size */
+    gap: 20px;
+    padding: 20px;
+    text-align: center;
+}
+
+.crop-item {
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    height: 100%;
+}
+
+/* Ensuring images cover space and have the same height */
+.crop-item img {
+   /* width: 100%;
+    height: 200px;*/
+    width: clamp(90%, 100%, 100%);
+    height: clamp(120px, 25vh, 200px);  /* Set a fixed height */
+    object-fit: cover; /* Ensures images fill the area uniformly */
+    border-radius: 8px;
+    transition: transform 0.3s;
+}
+
+.crop-item img:hover {
+    transform: scale(1.1);
+}
+
+/* Overlay should be a separate global div */
+.overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    
+    background: rgba(0, 0, 0, 0.7);
+    display: none;
+    justify-content: center;
+    align-items: center;
+/*   z-index: 1000; */
+}
+
+.crop-details {
+    background: white;
+    padding: 40px;
+    border-radius: 10px;
+    text-align: center;
+    min-width: 30%;
+    min-height: 30%;
+    max-width: 75%;
+    max-height: 75%;
+    width: auto;
+    height: auto;
+    position: relative;
+}
+
+.close-btn {
+    position: absolute;
+    top: 10px;
+    right: 15px;
+    font-size: clamp(12px, 2vw, 20px);
+    cursor: pointer;
+    background: red;
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    border-radius: 5px;
+}
+
+.Community_container textarea{
+    width: 300px;
+    min-height: 50px;
+}

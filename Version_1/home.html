@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+        <link rel="stylesheet" href="{{ url_for('static', filename='home_css.css') }}">
+        <link rel="icon" href="https://static.vecteezy.com/system/resources/previews/039/854/875/non_2x/sapling-tree-flat-illustration-on-white-background-free-vector.jpg"
+        type="image/x-icon" />
+        <title>Home</title>
+        <div id="google_translate_element" style="display: none;"></div>
+        <style>
+
+        .google_translate_element{
+            display: none;
+        }
+        h2 {
+            text-align: center;
+            margin-top: 20px;
+            font-size: clamp(16px, 2vw, 20px);
+        }
+
+        .community_div {
+            /* width: clamp(280px, 90%, 500px);
+            margin: 20px auto;*/
+            width: 90%;
+            max-width: 500px;
+            margin: 20px auto;
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0px 0px 10px rgba(0,0,0,0.1);
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+        }
+        .community_div label {
+            display: block;
+            font-weight: bold;
+
+            font-size: clamp(12px, 2vw, 18px);
+            margin-bottom: 5px;
+        }
+
+       .community_div input[type="text"],
+.community_div textarea {
+    width: clamp(250px, 100%, 600px);
+    padding: 10px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    font-size: clamp(14px, 2.5vw, 16px); /* 👈 responsive font-size */
+    box-sizing: border-box;
+}
+
+
+        .community_div textarea {
+            resize: vertical;
+            min-height: 100px;
+        }
+
+        .community_div button {
+            background-color: #28a745;
+            color: white;
+            padding: 10px 20px;
+            font-size: clamp(12px, 2vw, 18px);
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .community_div button:hover {
+            background-color: #218838;
+        }
+       .entry-container {
+    width: clamp(300px, 90%, 800px);
+    margin: 30px auto;
+}
+
+
+        .entry {
+            background-color: #ffffff;
+            border: 1px solid #ddd;
+            padding: 15px;
+            margin-bottom: 15px;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+        }
+
+        .entry p {
+            margin: 5px 0;
+        }
+
+        .entry strong {
+            color: #333;
+        }
+        .Community_container{
+            display: none;
+        }
+       .mobile-message {
+            display: none;
+        }
+
+        </style>
+    </head>
+    <body>
+
+<div class="language-container">
+            <button class="scroll-btn left-btn" onclick="scrollLeftMenu()">&#10094;</button>
+            <div class="language" id="languageMenu">
+
+                <a href="#" onclick="translatePage('en'); return false;">English</a>
+                <a href="#" onclick="translatePage('ta'); return false;">தமிழ்</a>
+                <a href="#" onclick="translatePage('hi'); return false;">हिंदी</a>
+                <a href="#" onclick="translatePage('kn'); return false;">ಕನ್ನಡ</a><!---kannadam-->
+                <a href="#" onclick="translatePage('ml'); return false;">മലയാളം</a><!---malayalam-->
+                <a href="#" onclick="translatePage('te'); return false;">తెలుగు</a><!---telugu-->
+            </div>
+            <button class="scroll-btn right-btn" onclick="scrollRightMenu()">&#10095;</button>
+        </div>
+       <div class="scrollmenu">
+        <!----<a><img src="{{ url_for('static', filename='ox.png') }}" alt="Ox Image" style="height: clamp(25px, 8vw, 70px); left: 0;"></a>--->
+           <a href="#" onclick="viewhome()" id="home">Home</a>
+           <a href="#" onclick="viewOrganicFarming()" id="knowledge">Organic Farming</a>
+           <a href="#" onclick="viewcommunity()" id="community">Community</a>
+
+        </div>
+        <div class="background_image">
+            <p id="thought"><i>Agriculture is not a business but a way of life..!
+            <span style="display: block;padding-left: 70%;">  - Nammalvar</span></i></p>
+        </div>
+
+        <div class="aboutus_container" id="aboutus_container">
+           <h2>About the Platform</h2>
+            <div class="aboutus">
+               <h2>Organic Farming Hub</h2>
+               <img src="{{ url_for('static', filename='crop_img.jpg') }}" alt="crop Image">
+
+                <p>Welcome to the Organic Farming Hub – a community-driven platform dedicated to sharing knowledge
+                and experiences in organic farming. Whether you’re an experienced farmer or a passionate learner,
+                this space allows you to document and share your organic farming methods, such as growing crops
+                without synthetic inputs.By contributing your process, you help others learn and
+                adopt sustainable practices. The platform fosters collaboration, enabling farmers and enthusiasts
+                to exchange insights, promote natural farming techniques, and support each other in building a
+                healthier, more sustainable agricultural future.
+                </p>
+            </div>
+        </div>
+
+
+        <div class="organic_farming" id="organic_farming">
+
+            <div class="form_data" id="form_data" >
+            <h2>Share Your Organic Farming Knowledge</h2>
+            <form method="POST" action="/" enctype="multipart/form-data" autocomplete="off">
+                <div class="form-group">
+                <label for="cropname">Crop Name :</label>
+                <input type="text" id="cropname" name="cropname">
+                </div>
+
+                <div class="form-group">
+                <label for="aboutcrop">Steps to cultivate the crop organically:</label>
+                <textarea id="aboutcrop" name="aboutcrop" placeholder="crop details" required></textarea>
+                </div>
+
+                <div class="form-group">
+                <label for="cropimage">Upload Crop Image:</label>
+                <input type="file" name = "cropimage" id="cropimage" accept="image/png, image/jpeg, image/jpg">
+                </div>
+                <button type="submit">🚀Submit</button>
+            </form>
+        </div>
+        <!-------------------------------------------------------------------------------------------------------------------->
+        <div class="tutorial">
+            <h2>Crop Specific Organic Farming</h2>
+            <input type="text" id="search-input" placeholder="Search tasks..." class="search-bar" onkeyup="searchTasks()">
+        </div>
+
+        <div class="crop-container">
+            {% for crop in crops %}
+            <div class="crop-item" onclick="showOverlay('{{ loop.index }}', '{{ crop.name }}', `{{ crop.details }}`)">
+                {% if crop.image %}
+                    <img src="data:image/png;base64,{{ crop.image }}" alt="Crop Image">
+                {% else %}
+                    <p>No Image Available</p>
+                {% endif %}
+                <p>{{ crop.name }}</p>
+            </div>
+            {% endfor %}
+        </div>
+
+        <div class="overlay" id="overlay">
+            <div class="crop-details" id="crop-details">
+                <button class="close-btn" onclick="hideOverlay()">X</button>
+                <h2 id="crop-name"></h2>
+                <p id="crop-description"></p>
+            </div>
+        </div>
+        </div>
+        <!-------------------------------------------------------------------------------------------------------------------->
+        <div class="Community_container" id="Community_container">
+        <div class="community_div" id="community_div">
+            <h2>Share your Feedback and Doubts</h2>
+            <form method="POST" action="/">
+                <div class="form-group">
+                <label for="username">Name:</label>
+                <input type="text" id="username" name="username" required>
+            </div>
+            <div class="form-group">
+                <textarea id="feedback" name="feedback" placeholder="share your doubts & feedback...."></textarea>
+            </div>
+            <button type="submit">Submit</button>
+        </form>
+        </div>
+         <div class="entry-container" id="submitted_path">
+        <h2>Submitted Success Paths</h2>
+        {% for feed in feeds %}
+        <div class="entry">
+            <p id="feedback_submitted"><strong>{{ feed.username }} : </strong> {{ feed.feedback }}</p>
+        </div>
+        {% endfor %}
+    </div>
+       </div>
+        <div class="footer" id="footer">
+            <div class="feedback">
+                <h2>Please Provide your feedback Here:</h2>
+            <form>
+                <textarea id="message" name="message" rows="4" cols="50" placeholder="Type your message here..."></textarea>
+                <button type="submit">Submit</button>
+            </form>
+            </div>
+            <p style="font-size: clamp(12px, 2vw, 16px);"><strong>Contact us:</strong> <a href="mailto:organicfarminghub2026@gmail.com" style="color: #d6b709;">organicfarminghub2026@gmail.com</a></p>
+            <p style="font-style: italic; font-size: clamp(12px, 2vw, 16px);">🌱 <strong>Falling to the ground is not a mistake, fall as a seed, and rise as a tree...!!!</strong>🌱</p>
+        </div>
+        <script>
+            window.addEventListener('load', setScrollMenuTop);
+            window.addEventListener('resize', setScrollMenuTop);
+
+            function setScrollMenuTop() {
+                const header = document.getElementById('languageMenu');
+                const scrollmenu = document.querySelector('.scrollmenu');
+                const headerHeight = header.offsetHeight;
+                scrollmenu.style.top = `${headerHeight}px`;
+
+
+                const bg = document.querySelector('.background_image');
+                const bgtop = scrollmenu.offsetHeight + header.offsetHeight;
+                 document.documentElement.style.setProperty('--bg-top', `${totalTop}px`);
+            }
+        </script>
+
+        <script src="script.js"></script>
+        <script type="text/javascript">
+        function googleTranslateElementInit() {
+            new google.translate.TranslateElement(
+                {pageLanguage: 'en'},
+                'google_translate_element'
+            );
+        }
+        function translatePage(lang) {
+            if (lang === "") return;
+
+            var combo = document.querySelector(".goog-te-combo");
+            if (combo) {
+                combo.value = lang;
+                combo.dispatchEvent(new Event("change"));
+            } else {
+                alert("Translate element not loaded yet. Please wait.");
+    }
+}
+
+
+  </script>
+  <script type="text/javascript" src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+
+        <script src="{{ url_for('static', filename='js_file.js') }}"></script>
+    </body>
+</html>
+

@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+        <link rel="stylesheet" href="{{ url_for('static', filename='home_css.css') }}">
+        <link rel="icon" href="{{ url_for('static', filename='ofh.png') }}" type="image/png" />
+
+        <title>Organic Farming Hub</title><!----https://static.vecteezy.com/system/resources/previews/039/854/875/non_2x/sapling-tree-flat-illustration-on-white-background-free-vector.jpg-->
+        <div id="google_translate_element" style="display: none;"></div>
+    </head>
+
+    <body>
+       
+    <div class="language-container">
+            <button class="scroll-btn left-btn" onclick="scrollLeftMenu()" translate="no">&#10094;</button>
+            <div class="language" id="languageMenu" translate="no">
+ 
+            <a href="#" onclick="translatePage('en'); return false;" translate="no">English</a>
+            <a href="#" onclick="translatePage('ta'); return false;" translate="no">தமிழ்</a> <!-- Tamil -->
+            <a href="#" onclick="translatePage('hi'); return false;" translate="no">हिंदी</a> <!-- Hindi -->
+            <a href="#" onclick="translatePage('kn'); return false;" translate="no">ಕನ್ನಡ</a> <!-- Kannada -->
+            <a href="#" onclick="translatePage('ml'); return false;" translate="no">മലയാളം</a> <!-- Malayalam -->
+            <a href="#" onclick="translatePage('te'); return false;" translate="no">తెలుగు</a> <!-- Telugu -->
+            <a href="#" onclick="translatePage('gu'); return false;" translate="no">ગુજરાતી</a> <!-- Gujarati -->
+            <a href="#" onclick="translatePage('mr'); return false;" translate="no">मराठी</a> <!-- Marathi -->
+            <a href="#" onclick="translatePage('bn'); return false;" translate="no">বাংলা</a> <!-- Bengali -->
+            <a href="#" onclick="translatePage('ur'); return false;" translate="no">اردو</a> <!-- Urdu -->
+            <a href="#" onclick="translatePage('ar'); return false;" translate="no">العربية</a> <!-- Arabic -->
+            <a href="#" onclick="translatePage('zh-CN'); return false;" translate="no">简体中文</a> <!-- Chinese (Simplified) -->
+            <a href="#" onclick="translatePage('zh-TW'); return false;" translate="no">繁體中文</a> <!-- Chinese (Traditional) -->
+            <a href="#" onclick="translatePage('fr'); return false;" translate="no">Français</a> <!-- French -->
+            <a href="#" onclick="translatePage('de'); return false;" translate="no">Deutsch</a> <!-- German -->
+            <a href="#" onclick="translatePage('es'); return false;" translate="no">Español</a> <!-- Spanish -->
+            <a href="#" onclick="translatePage('ru'); return false;" translate="no">Русский</a> <!-- Russian -->
+            <a href="#" onclick="translatePage('ja'); return false;" translate="no">日本語</a> <!-- Japanese -->
+            <a href="#" onclick="translatePage('ko'); return false;" translate="no">한국어</a> <!-- Korean -->
+            <a href="#" onclick="translatePage('pt'); return false;" translate="no">Português</a> <!-- Portuguese -->
+            <a href="#" onclick="translatePage('it'); return false;" translate="no">Italiano</a> <!-- Italian -->
+
+            </div>
+            <button class="scroll-btn right-btn" onclick="scrollRightMenu()" translate="no">&#10095;</button>
+        </div>
+       <div class="scrollmenu">
+       <img src="{{ url_for('static', filename='ox.png') }}" alt="Ox Image" style="height: clamp(25px, 8vw, 70px);">
+           <a href="#" onclick="viewhome()" id="home">Home</a>     
+           <a href="#" onclick="viewOrganicFarming()" id="knowledge">Organic Farming</a> 
+           <a href="#" onclick="viewcommunity()" id="community">Community</a>
+       
+           
+        </div>
+        <div class="background_image">
+            <p id="thought"><i>Agriculture is not a business but a way of life..!
+            <span style="display: block;padding-left: 70%;">  - Nammalvar</span></i></p>
+        </div>
+
+        <div class="aboutus_container" id="aboutus_container">
+           <h2>About the Platform</h2>
+            <div class="aboutus"> 
+               <h2>Organic Farming Hub</h2>
+               <img src="{{ url_for('static', filename='crop_img.jpg') }}" alt="crop Image">
+            <div class="aboutus_text">
+                    <h2>Welcome to Organic Farming Hub – a place to share ideas and experiences about organic farming.</h2>
+
+                    <p style="line-height: 1.8;">Organic Farming Hub is a space for farmers and learners to share and learn how to grow crops without using chemicals.
+                    you can post your farming methods, step-by-step processes, and tips.
+                    This platform helps people connect, learn natural farming, and support each other in building a healthy future.</p>
+                    
+                </div>
+            </div>
+        </div>
+
+
+        <div class="organic_farming" id="organic_farming">
+
+            <div class="form_data" id="form_data" >
+            <h2>Share Your Organic Farming Knowledge</h2>
+            <form method="POST" action="/" enctype="multipart/form-data" autocomplete="off">
+                <div class="form-group">
+                <label for="cropname">Crop Name :</label>
+                <input type="text" id="cropname" name="cropname">
+                </div>
+
+                <div class="form-group">
+                <label for="aboutcrop">Steps to cultivate the crop organically:</label>
+                <textarea id="aboutcrop" name="aboutcrop" placeholder="crop details" required></textarea>
+                </div>                
+
+                <div class="form-group">
+                <label for="cropimage">Upload Crop Image:</label>
+                <input type="file" name = "cropimage" id="cropimage" accept="image/png, image/jpeg, image/jpg">
+                </div>
+                <button type="submit">🚀Submit</button>
+            </form>
+        </div>
+        <!-------------------------------------------------------------------------------------------------------------------->
+        <div class="tutorial">
+            <h2>Crop Specific Organic Farming</h2>
+            <input type="text" id="search-input" placeholder="Search ..." class="search-bar" onkeyup="searchTasks()">
+        </div>
+       
+        <div class="crop-container">
+            {% for crop in crops %}
+            <div class="crop-item" onclick="showOverlay('{{ loop.index }}', '{{ crop.name }}', `{{ crop.details | safe}}`)">
+                {% if crop.image %}
+                    <img src="data:image/png;base64,{{ crop.image }}" alt="Crop Image">
+                {% else %}
+                    <p>No Image Available</p>
+                {% endif %}
+                <p>{{ crop.name }}</p>
+                
+            </div>
+            {% endfor %}
+        </div>
+
+        <div class="overlay" id="overlay">
+            <div class="crop-details" id="crop-details">
+                <button class="close-btn" onclick="hideOverlay()" translate="no">X</button>
+                <h2 id="crop-name"></h2>
+                <p id="crop-description"></p>
+            </div>
+        </div>
+        </div>
+        <!-------------------------------------------------------------------------------------------------------------------->
+        <div class="Community_container" id="Community_container">
+        <div class="community_div" id="community_div">
+            <h2>Share your Feedback and Doubts</h2>
+            <form method="POST" action="/">
+                <div class="form-group">
+                <label for="username">Name:</label>
+                <input type="text" id="username" name="username" required>
+            </div>
+            <div class="form-group">
+                <textarea id="feedback" name="feedback" placeholder="share your doubts & feedback...."></textarea>
+            </div>
+            <button type="submit">Submit</button>
+        </form>
+        </div>
+         <div class="entry-container" id="submitted_path">
+            
+        <h2>Community</h2>
+        <div class="searchbar">
+        <input type="text" id="search-message" placeholder="Search..." class="search-bar" onkeyup="searchmessages()">
+        </div>
+        {% for feed in feeds %}
+        <div class="entry">
+            <p id="feedback_submitted"><strong>{{ feed.username }} : </strong> {{ feed.feedback }}</p>
+            <span class="timestamp">{{ feed.entryTime.strftime('%d %b %Y, %I:%M %p') }}</span>
+        </div>
+        {% endfor %}
+    </div>
+       </div>
+
+
+
+
+        <div class="footer" id="footer">
+            <div class="feedback">
+                <h2>Please Provide your feedback Here:</h2>
+            <form>
+                <textarea id="message" name="message" rows="4" cols="50" placeholder="Type your message here..."></textarea>
+                <button type="submit">Submit</button>
+            </form>
+            </div>
+            <p style="font-size: clamp(12px, 2vw, 16px);"><strong>Contact us:</strong> <a href="mailto:organicfarming@gmail.com" style="color: #d6b709;">organicfarming@gmail.com</a></p>
+            <p style="text-align:center; line-height: 1.8;font-style: italic; font-size: clamp(12px, 2vw, 16px); padding: 10px 20px;">🌱 <strong>Falling to the ground is not a mistake, fall as a seed, and rise as a tree...!!!</strong>🌱</p>
+           
+        </div>
+
+        <script src="script.js"></script>
+        <script type="text/javascript" src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+        <script src="{{ url_for('static', filename='js_file.js') }}"></script>
+        <script src="{{ url_for('static', filename='translation.js') }}"></script>
+
+       
+    </body>
+</html>
+
+      <!----
+         <div class="privacy-notice">
+    <strong>Privacy Notice:</strong>
+    We use Google Analytics to collect basic information such as the number of visitors, pages viewed, and device types. No personal data is collected or stored.
+</div>   
+.privacy-notice {
+    background-color: #121212;
+    color: #e0e0e0;
+    text-align: center;
+    padding: clamp(8px, 2.5vw, 16px) clamp(12px, 4vw, 24px);
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-size: clamp(13px, 2vw, 15px); /* Body font size */
+    line-height: 1.6;
+    
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+    width: 100%;
+    max-width: 100%;
+    box-sizing: border-box;
+}
+
+.privacy-notice strong {
+    color: #90ee90;
+    display: block;
+    font-weight: bold;
+    margin-bottom: 4px;
+    font-size: clamp(14px, 2.2vw, 17px); /* Added clamp for heading font size */
+}--->
+     
